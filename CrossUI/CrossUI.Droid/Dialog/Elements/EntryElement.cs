@@ -257,6 +257,12 @@ namespace CrossUI.Droid.Dialog.Elements
             return view;
         }
 
+        public override bool? Clickable
+        {
+            get { return true; }
+            set {  }
+        }
+
         public override bool Matches(string text)
         {
             return Value != null && Value.IndexOf(text, StringComparison.CurrentCultureIgnoreCase) != -1 ||

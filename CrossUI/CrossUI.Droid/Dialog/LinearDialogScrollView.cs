@@ -202,22 +202,17 @@ namespace CrossUI.Droid.Dialog
 
         public void ListView_ItemClick(object sender, EventArgs eventArgs)
         {
-            var position = (int)((View)sender).GetTag(_TAG_INDEX);
-            var elem = _dialogAdapter.ElementAtIndex(position);
-            if (elem == null) return;
-            elem.Selected();
-            if (elem.Click != null)
-                elem.Click(this, EventArgs.Empty);
+            var senderView = ((View) sender);
+            var position = (int)senderView.GetTag(_TAG_INDEX);
+            _dialogAdapter.ListView_ItemClick(sender, new AdapterView.ItemClickEventArgs(null, senderView, position, senderView.Id));
         }
 
 #warning Just checking this is always wanted - see @csteeg's question on https://github.com/slodge/MvvmCross/issues/281
         public void ListView_ItemLongClick(object sender, View.LongClickEventArgs longClickEventArgs)
         {
-            var position = (int)((View)sender).GetTag(_TAG_INDEX);
-            var elem = _dialogAdapter.ElementAtIndex(position);
-            if (elem == null) return;
-            if (elem.LongClick != null)
-                elem.LongClick(this, EventArgs.Empty);
+            var senderView = ((View)sender);
+            var position = (int)senderView.GetTag(_TAG_INDEX);
+            _dialogAdapter.ListView_ItemLongClick(sender, new AdapterView.ItemLongClickEventArgs(false, null, senderView, position, senderView.Id));
         }
 
 #warning The naming of this feels wrong ? Also feels like it might not work if any dynamic elements are ever used
