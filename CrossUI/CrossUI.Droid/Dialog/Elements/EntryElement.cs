@@ -259,8 +259,8 @@ namespace CrossUI.Droid.Dialog.Elements
 
         public override bool? Clickable
         {
-            get { return true; }
-            set {  }
+            get { return _clickable ?? true; }
+            set { _clickable = value; }
         }
 
         public override bool Matches(string text)
@@ -294,6 +294,7 @@ namespace CrossUI.Droid.Dialog.Elements
         }
 
         private UITextFieldViewMode clearButtonMode;
+        private bool? _clickable;
 
         #endregion
 
